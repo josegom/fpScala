@@ -1,7 +1,7 @@
 package chapter2
 
 /**
-  * Created by jose on 13/02/2016.
+  * Exercise 2.1
   */
 object Fibonnaci {
 
