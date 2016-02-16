@@ -63,10 +63,20 @@ class ListTest extends FlatSpec with Matchers {
 
   "Wit init" should "create a list without the last element" in {
     List.init(List(1,2,3,4,5,6)) should be(List(1,2,3,4,5))
+  }
 
+  "List leghth" should "be correct" in {
+    List.length(List(1,2,3,4,5,6,7,8,9,10)) should be(10)
   }
 
 
+  "Sum list wit foldLEft" should "be correct" in {
+    List.sum3(List(1,2,2,3,0)) should be(8)
+  }
+
+  "product list wit foldLEft" should "be correct" in {
+    List.product3(List(1,2,2,3)) should be(12)
+  }
 
   def sum(ints: List[Int]): Int = ints match {
     case Nil => 0

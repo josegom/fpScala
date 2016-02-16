@@ -59,17 +59,34 @@ def tail[A](as : List[A]) : List[A] = as match{
   def init[A](l: List[A]): List[A] = {
     l match {
       case Nil => Nil
-      case Cons(h,Nil) => Nil
-      case Cons(h,t) => Cons(h, init(t))
+      case Cons(h, Nil) => Nil
+      case Cons(h, t) => Cons(h, init(t))
 
     }
   }
+
+
+    def length[A](l: List[A]): Int = {
+      foldRight(l,0)((x,y) => 1+y)
+    }
+
+
+  def reverse[A](l: List[A]): List[A] = foldLeft(l, List[A]())((acc,h) => Cons(h,acc))
+
+
   /** No More Mine **/
   def append[A](a1: List[A], a2: List[A]): List[A] =
     a1 match {
       case Nil => a2
       case Cons(h, t) => Cons(h, append(t, a2))
     }
+
+  def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = l match {
+    case Nil => z
+    case Cons(h, t) => foldLeft(t, f(z, h))(f)
+  }
+
+
 
   def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = // Utility functions
     as match {
@@ -84,14 +101,17 @@ def tail[A](as : List[A]) : List[A] = as match{
     foldRight(ns, 1.0)(_ * _) // `_ * _` is more concise notation for `(x,y) => x * y`; see sidebar
 
 
+  def sum3(ns: List[Int]) = {
+    foldLeft(ns,0)(_ + _)
+  }
+
+  def product3(ns: List[Double]) =
+    foldRight(ns, 1.0)(_ * _)
 
 
 
 
 
-  def length[A](l: List[A]): Int = sys.error("todo")
-
-  def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = sys.error("todo")
 
   def map[A, B](l: List[A])(f: A => B): List[B] = sys.error("todo")
 }
